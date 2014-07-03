@@ -30,7 +30,7 @@ when "login"
 	else
 		file = ARGV[4]
 	end
-	PATH = '/doLogin/authUser.php'
+	API_PATH = '/doLogin/authUser.php'
 	data = <<-EOF
 --#{boundary}\r
 content-disposition: form-data; name="username"\r
@@ -60,7 +60,7 @@ EOF
 		proxy_host, proxy_port = nil, nil
 	end
 	Net::HTTP::Proxy(proxy_host, proxy_port).start(HOST,80) {|http|
-		res = http.post(PATH,data,headers)
+		res = http.post(API_PATH,data,headers)
 		response = res.response.body
 		resjson = JSON.parse(res.response.body)
 		if resjson["status"] == 'success' then
@@ -104,7 +104,7 @@ when "list"
 	jsonbody = JSON.parse(body)
 	auth_token = jsonbody["token"]
 
-	PATH = '/listApps.php'
+	API_PATH = '/listApps.php'
 	data = <<-EOF
 --#{boundary}\r
 content-disposition: form-data; name="auth_token"\r
@@ -127,7 +127,7 @@ EOF
 	end
 
 	Net::HTTP::Proxy(proxy_host, proxy_port).start(HOST,80) {|http|
-		res = http.post(PATH,data,headers)
+		res = http.post(API_PATH,data,headers)
 		response = res.response.body
 		resjson = JSON.parse(res.response.body)
 		if resjson["status"] == 'success' then
