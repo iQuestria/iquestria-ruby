@@ -1,3 +1,3 @@
 # iquestria.rb
 
-iQuestria's command line tool to interact with the public API (coming soon).
+iQuestria's command line tool to interact with the public API (coming soon). Pull requests are welcome.
